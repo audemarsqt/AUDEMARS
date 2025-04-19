@@ -45,7 +45,7 @@ profileSettings.links.forEach(link => {
   if (link.title && link.url) {
     const linkElement = document.createElement('a');
     linkElement.href = link.url;
-    linkElement.innerHTML = <i class="fa ${link.icon}" aria-hidden="true"></i> ${link.title};
+    linkElement.innerHTML = `<i class="fa ${link.icon}" aria-hidden="true"></i> ${link.title}`;
     linkBoxes.appendChild(linkElement);
   }
 });
