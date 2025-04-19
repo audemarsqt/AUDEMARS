@@ -8,7 +8,7 @@ const profileSettings = {
   metaRobots: "index, follow", // Pengaturan robot meta untuk SEO
   imageSrc: "media/profie.jpg", // Path ke gambar profil
   name: "audemars", // Nama profil
-  occupation: "gamer", // Pekerjaan atau jabatan
+  occupation: "", // Pekerjaan atau jabatan
   links: [
     { title: "Twitch", url: "https://www.twitch.tv/audemarsqt", icon: "fa-twitch" }, // Tautan GitHub
     { title: "Twitter", url: "https://x.com/audemarsqt", icon: "fa-twitter" }, // Tautan Instagram
