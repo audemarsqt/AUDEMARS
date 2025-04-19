@@ -42,7 +42,7 @@ const profileSettings = {
   
   // Mengatur tautan-tautan
   const linkBoxes = document.getElementById('link-boxes');
-  profileSettings.links.forEach(link => {https://github.com/audemarsqt/AUDEMARS/blob/main/GnSiWFfbUAA8Jug.mp4
+  profileSettings.links.forEach(link => {https://github.com/audemarsqt/AUDEMARS/blob/main/GnSiWFfbUAA8Juag.gif
     // Hanya menambahkan tautan yang tidak kosong
     if (link.title && link.url) {
       const linkElement = document.createElement('a');
