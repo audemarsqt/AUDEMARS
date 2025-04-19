@@ -6,7 +6,7 @@ const profileSettings = {
     metaDescription: "Profile Website Vynaa Valerie, Creator and Dev", // Deskripsi meta untuk SEO
     metaKeywords: "Vynaa, Vynaa Valerie, profile Vynaa, siapa Vynaa?", // Keywords meta untuk SEO
     metaRobots: "index, follow", // Pengaturan robot meta untuk SEO
-    imageSrc: "media/vynaa.jpg", // Path ke gambar profil
+    imageSrc: "media/background.gif", // Path ke gambar profil
     name: "audemars", // Nama profil
     occupation: "", // Pekerjaan atau jabatan
     links: [
