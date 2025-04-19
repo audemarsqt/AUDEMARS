@@ -10,10 +10,10 @@ const profileSettings = {
   name: "audemars", // Nama profil
   occupation: "", // Pekerjaan atau jabatan
   links: [
-    { title: "Twitch", url: "https://www.twitch.tv/audemarsqt", icon: "fa-twitch" }, // Tautan GitHub
-    { title: "Twitter", url: "https://x.com/audemarsqt", icon: "fa-twitter" }, // Tautan Instagram
-    { title: "Youtube", url: "https://www.youtube.com/@audemarsqt", icon: "fa-youtube" }, // Tautan Telegram
-    { title: "Spotify", url: "https://open.spotify.com/user/kjdzzldjj4pynsw4p688zxzlp", icon: "fa-spotify" }, // Tautan Email
+    { title: "twitch", url: "https://www.twitch.tv/audemarsqt", icon: "fa-twitch" }, // Tautan GitHub
+    { title: "twitter", url: "https://x.com/audemarsqt", icon: "fa-twitter" }, // Tautan Instagram
+    { title: "youtube", url: "https://www.youtube.com/@audemarsqt", icon: "fa-youtube" }, // Tautan Telegram
+    { title: "spotify", url: "https://open.spotify.com/user/kjdzzldjj4pynsw4p688zxzlp", icon: "fa-spotify" }, // Tautan Email
   ]
 };
 
