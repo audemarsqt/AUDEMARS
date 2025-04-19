@@ -1,19 +1,21 @@
 // Objek untuk menyimpan semua pengaturan profil
 const profileSettings = {
-  favicon: "media/profie.jpg", // Path ke favicon
-  title: "audemars | Profile", // Judul halaman
-  metaTitle: "audemars || Profile", // Meta title untuk SEO
-  metaDescription: "Profile Website audemars, Creator and Dev", // Deskripsi meta untuk SEO
-  metaKeywords: "audemars, audemars, profile audemars, siapa audemars?", // Keywords meta untuk SEO
+  favicon: "media/vynaa.jpg", // Path ke favicon
+  title: "Vynaa Valerie | Profile", // Judul halaman
+  metaTitle: "Vynaa || Profile", // Meta title untuk SEO
+  metaDescription: "Profile Website Vynaa Valerie, Creator and Dev", // Deskripsi meta untuk SEO
+  metaKeywords: "Vynaa, Vynaa Valerie, profile Vynaa, siapa Vynaa?", // Keywords meta untuk SEO
   metaRobots: "index, follow", // Pengaturan robot meta untuk SEO
-  imageSrc: "media/profie.jpg", // Path ke gambar profil
-  name: "audemars", // Nama profil
-  occupation: "gamer", // Pekerjaan atau jabatan
+  imageSrc: "media/vynaa.jpg", // Path ke gambar profil
+  name: "Vynaa Valerie", // Nama profil
+  occupation: "Creator & Developer", // Pekerjaan atau jabatan
   links: [
-    { title: "Twitch", url: "https://www.twitch.tv/audemarsqt", icon: "fa-twitch" }, // Tautan GitHub
-    { title: "Twitter", url: "https://x.com/audemarsqt", icon: "fa-twitter" }, // Tautan Instagram
-    { title: "Youtube", url: "https://www.youtube.com/@audemarsqt", icon: "fa-youtube" }, // Tautan Telegram
-    { title: "Spotify", url: "https://open.spotify.com/user/kjdzzldjj4pynsw4p688zxzlp", icon: "fa-spotify" }, // Tautan Email
+    { title: "GitHub", url: "https://github.com/VynaaValerie", icon: "fa-github" }, // Tautan GitHub
+    { title: "Instagram", url: "https://www.instagram.com/vynaa_valerie", icon: "fa-instagram" }, // Tautan Instagram
+    { title: "Telegram", url: "https://t.me/VLShop2", icon: "fa-telegram" }, // Tautan Telegram
+    { title: "Email", url: "mailto:vynaavalerie@example.com", icon: "fa-envelope" }, // Tautan Email
+    { title: "WhatsApp", url: "https://wa.me/6282389924037?text=hai", icon: "fa-whatsapp" }, // Tautan WhatsApp
+    { title: "YouTube", url: "https://youtube.com/@VynaaChan", icon: "fa-youtube" } // Tautan YouTube
   ]
 };
 
@@ -49,4 +51,3 @@ profileSettings.links.forEach(link => {
     linkBoxes.appendChild(linkElement);
   }
 });
- 
