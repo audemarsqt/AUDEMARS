@@ -1,6 +1,6 @@
 // Objek untuk menyimpan semua pengaturan profil
 const profileSettings = {
-    favicon: "media/vynaa.jpg", // Path ke favicon
+    favicon: "media/profie.jpg", // Path ke favicon
     title: "Vynaa Valerie | Profile", // Judul halaman
     metaTitle: "Vynaa || Profile", // Meta title untuk SEO
     metaDescription: "Profile Website Vynaa Valerie, Creator and Dev", // Deskripsi meta untuk SEO
@@ -42,7 +42,7 @@ const profileSettings = {
   
   // Mengatur tautan-tautan
   const linkBoxes = document.getElementById('link-boxes');
-  profileSettings.links.forEach(link => {https://github.com/audemarsqt/AUDEMARS/blob/main/GnSiWFfbUAA8Juag.gif
+  profileSettings.links.forEach(link => {
     // Hanya menambahkan tautan yang tidak kosong
     if (link.title && link.url) {
       const linkElement = document.createElement('a');
