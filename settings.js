@@ -21,7 +21,7 @@ const profileSettings = {
 document.getElementById('favicon').href = profileSettings.favicon;
 
 // Mengatur judul halaman
-document.getElementById('title').textContent = profileSettings.title;
+document.title = profileSettings.title;
 
 // Mengatur meta tags
 document.getElementById('meta-title').content = profileSettings.metaTitle;
