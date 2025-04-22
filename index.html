@@ -343,11 +343,20 @@
       width: 100%;
       height: 100%;  
     }
+
+  video::-webkit-media-controls {
+    display: none !important;
+  }
+
+  video::-webkit-media-controls-enclosure {
+    display: none !important;
+  }
+    
   </style>
 </head>
 <body>
   <!-- Video -->
-  <video id="background-video" autoplay muted loop class="hidden">
+  <video id="background-video" autoplay muted loop playsinline class="hidden">
     <source src="https://cdn.discordapp.com/attachments/1287937673440530462/1364064861901815838/XFgugFW4WJaK81i8.mp4?ex=68084fe6&is=6806fe66&hm=a10500833860ac8d480334903ecfc31cc4cdcaff5d8b820e49b8ce10b129f475&" type="video/mp4">
     Your browser does not support the video tag.
   </video>
