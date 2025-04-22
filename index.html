@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="crowbars">
+  <meta property="og:description" content="~ @v4ze">
+  <meta property="og:image" content="https://i.pinimg.com/736x/2e/d0/8d/2ed08d6614daeb2ae77236a54ffae16c.jpg">
+  <meta property="og:url" content="https://www.crowbars.art">
+  <meta property="og:type" content="website">
+  <title>crowbars :3</title>
+  <style>
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #000; /* hi audemars */
+      color: #fff;
+      font-family: 'Courier New', Courier, monospace; 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    ::selection {
+    background-color: #ffb6c1; /* highlight color */
+    color: #000000; /* contrast when highlighted */
+    border-radius: 5px;
+    }
+
+    ::-webkit-selection { /* this part is for webkit browsers */
+    background-color: #ffb6c1; /* highlight color */
+    color: #000000; /* contrast */
+    border-radius: 5px;
+    }
+
+
+    #terminal {
+      width: 80%;
+      max-width: 800px;
+      padding: 20px;
+      border: 2px solid #fff; /* Border color of the terminal */
+      background-color: #000; /* Background color of the terminal */
+      font-size: 16px;
+      line-height: 1.5;
+      border-radius: 12px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+
+    .prompt {
+      color: #fff; 
+      display: flex; 
+      align-items: center; 
+    }
+
+    .prompt .user-host {
+      color: #ff79c6; /* Color for vaze@biolink */
+    }
+
+    .prompt .dollar {
+        color: #dcdcaa; /* color for the dollar sign */
+    }
+
+    .prompt .tilde {
+      color: #ffb3d9; /* Ligher color for '~' */
+    }
+
+    .prompt .typed {
+      display: inline-block;
+      white-space: pre;
+      overflow: hidden;
+      margin-left: 5px; 
+      border-right: 2px solid #fff; 
+      animation: blink 0.7s step-end infinite;
+    }
+
+    @keyframes blink {
+      50% {
+        border-color: transparent;
+      }
+    }
+
+
+    #output {
+      margin-top: 10px; 
+    }
+
+
+    #biolink-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('place-h'); /* replace w ur background path NIGGA */
+      background-size: cover; /* dont touch :3 */
+      background-position: center; /* Gurt: yo */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      font-family: 'Courier New', Courier, monospace;
+      flex-direction: column;
+    }
+
+    #biolink-content.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    #biolink-content.visible {
+      animation: fadeIn 1s forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* pfp */
+    .profile-picture {
+      width: 100px; /* size */
+      height: 100px;
+      border-radius: 50%; /* dont touch this lol js makes it circular */
+      border: 2px solid #ffffff; /* border */
+      object-fit: cover; 
+      margin-bottom: 10px;
+    }
+
+    .username {
+      font-size: 20px;
+      font-weight: bold;
+      color: #ffff; /* changes the color for the username */
+      text-shadow: 0 0 5px #ffff, 0 0 10px #ffff, 0 0 15px #ffff; /* glow, you can remove this if u want, the '#ffff' shit is just the color */
+      margin-bottom: 20px;
+    }
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(2, auto); /* Button alignment this creates 2 columns */
+      gap: 15px; /* Spacing between buttons dont change this if u do ask me */
+    }
+
+    .rounded-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px; /* Space between icon and text, dont change this if u do ask me cuz it might make it weird */
+      padding: 10px 20px; 
+      border: 2px solid #ffffff; /* White border color */
+      border-radius: 12px; 
+      background: transparent; /* Transparent background */
+      color: #ffffff; /* White text color */
+      font-size: 16px; /* Font size for text */
+      text-decoration: none; 
+      transition: all 0.3s ease; 
+      font-family: 'Courier New', Courier, monospace; /* button font type shi */
+    }
+
+    .rounded-button img {
+      width: 20px; /* dont change this its gonna make the button look ugly asf g */
+      height: 20px;
+    }
+
+    .rounded-button:hover {
+      background: #ffffff; /* White background on hover */
+      color: #1e1e1e; /* Dark text on hover, u can change to whatever it wont fuck it up */
+    }
+
+
+    #clock {
+      position: fixed; 
+      top: 10px;
+      right: 10px;
+      background-color: #333; /* background color */
+      color: #fff; /* text color */
+      padding: 5px 10px;
+      border-radius: 8px; 
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+      display: flex;
+      gap: 10px;
+      z-index: 1000; 
+    }
+
+    #clock .date {
+      border-right: 1px solid #555;
+      padding-right: 10px;
+    }
+
+    /* remove all of bottom left text including the last '}' if u dont want it there */
+    #bottom-left-text {
+      position: absolute; 
+      bottom: 10px; 
+      left: 10px; 
+      color: #ffff; 
+      font-size: 10px; 
+      text-shadow: 0 0 5px #ffff, 0 0 10px #ffff; 
+    }
+    
+    #addButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    background-color: #1A1A1A;
+    color: white;
+    border-radius: 50%;
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+  }
+
+  #addButton:hover {
+    background-color: #0D0D0D;
+  }
+
+  
+  #draggableContainer {
+    display: none; 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0); 
+    transition: transform 0.5s ease; 
+    width: 702.5px;
+    height: 502.5px;
+    background-image: url('https://i.pinimg.com/originals/7b/97/c7/7b97c773b434d1bbdca819aabd4ba0d4.gif');
+    background-size: cover;
+    background-position: center;
+    border-radius: 15px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
+    overflow: hidden; 
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+    z-index: 100;
+  }
+
+  #draggableHeader {
+    background-color: rgba(0, 0, 0, 0.8); 
+    color: white;
+    padding: 10px 15px; 
+    cursor: move;
+    display: flex;
+    align-items: center; 
+    border-top-left-radius: 15px; 
+    border-top-right-radius: 15px; 
+    margin: 0; 
+  }
+
+  #draggableHeader h3 {
+    margin: 0; 
+    font-size: 16px;
+    line-height: 1; 
+  }
+
+  #closeButton {
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    margin-left: auto; 
+  }
+
+  #content {
+    padding: 10px;
+    overflow-y: auto;
+    height: calc(100% - 50px); 
+    background-color: rgba(0, 0, 0, 0.5); 
+    color: #fff;
+  }
+
+  
+  #content::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  #content::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3); 
+    border-radius: 5px;
+  }
+
+  #content::-webkit-scrollbar-track {
+    background-color: transparent; 
+  }
+
+  #content h4 {
+    margin: 10px 0;
+    font-size: 18px;
+    color: #ffffff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    border-bottom: 1px solid #555;
+    padding-bottom: 5px;
+  }
+
+  #content .columns {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  #content .column {
+    flex: 1;
+  }
+
+  #content ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  #content ul li {
+    margin: 5px 0;
+    padding: 5px;
+    background-color: rgba(34, 34, 34, 0.7);
+    border-radius: 5px;
+    font-size: 14px;
+    color: #ddd; 
+  }
+
+  #content ul li:hover {
+    background-color: rgba(51, 51, 51, 0.8);
+  }
+  </style>
+</head>
+<body>
+  <!-- Clock -->
+  <div id="clock">
+    <div class="date">Loading...</div> <!-- works -->
+    <div class="time">Loading...</div>
+  </div>
+  
+  <button id="addButton">+</button>
+
+<div id="draggableContainer">
+  <div id="draggableHeader">
+    <h3>Top Tracks & Artists</h3>
+    <button id="closeButton">×</button>
+  </div>
+  <div id="content">
+    <p>Loading...</p>
+  </div>
+</div>
+
+  <!-- Change vaze@biolink to ur thing or if u dont wanna use it lmk and ill update the code for u -->
+  <div id="terminal">
+
+    <div class="prompt">
+      <span class="user-host">vaze@biolink</span><span class="tilde">:~</span><span class="dollar">$</span> 
+      <span id="typed-text" class="typed"></span>
+    </div>
+    <div id="output"></div>
+  </div>
+
+  <div id="bottom-left-text">@ ~ v4ze</div> <!-- remove this if you dont want it here or change it to wtv tf u want -->
+
+  <div id="biolink-content" class="hidden">
+
+    <img src="https://i.pinimg.com/736x/db/9c/45/db9c4589b984133fec6842a0b81a17a4.jpg" alt="Profile Picture" class="profile-picture"> <!-- CHANGE UR PFP HERE DUMBAHH JIT -->
+
+
+    <div class="username">vaze</div> <!-- ur username lawl -->
+
+
+    <div class="button-grid">
+      <!-- Button 1 -->
+      <a href="https://www.youtube.com/watch?v=v9jipwp0M84" class="rounded-button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-label="Right Arrow">
+    <path d="M9.29 6.71a1 1 0 0 1 1.41 0L14.59 11l-3.89 4.29a1 1 0 1 1-1.41-1.41L12.17 12H4a1 1 0 1 1 0-2h8.17l-2.88-3.29a1 1 0 0 1 0-1.41z"/>
+  </svg>
+        crowbars <!-- put whatever here if u want the logos ask me or ill put the link somewhere idk lol -->
+      </a>
+
+      <!-- Button 2 -->
+      <a href="https://www.youtube.com/watch?v=BoXOs0eDArI" class="rounded-button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-label="Right Arrow">
+    <path d="M9.29 6.71a1 1 0 0 1 1.41 0L14.59 11l-3.89 4.29a1 1 0 1 1-1.41-1.41L12.17 12H4a1 1 0 1 1 0-2h8.17l-2.88-3.29a1 1 0 0 1 0-1.41z"/>
+  </svg>
+        cellar
+      </a>
+
+      <!-- Button 3 -->
+      <a href="https://www.youtube.com/watch?v=F3pkJJyQf4g" class="rounded-button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-label="Right Arrow">
+    <path d="M9.29 6.71a1 1 0 0 1 1.41 0L14.59 11l-3.89 4.29a1 1 0 1 1-1.41-1.41L12.17 12H4a1 1 0 1 1 0-2h8.17l-2.88-3.29a1 1 0 0 1 0-1.41z"/>
+  </svg>
+        poison
+      </a>
+
+      <!-- Button 4 -->
+      <a href="https://www.youtube.com/watch?v=9E0C7w0_GnU" class="rounded-button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-label="Right Arrow">
+    <path d="M9.29 6.71a1 1 0 0 1 1.41 0L14.59 11l-3.89 4.29a1 1 0 1 1-1.41-1.41L12.17 12H4a1 1 0 1 1 0-2h8.17l-2.88-3.29a1 1 0 0 1 0-1.41z"/>
+  </svg>
+        move on
+      </a>
+    </div>
+  </div>
+
+  <script>
+  const terminal = document.getElementById('terminal');
+  const typedText = document.getElementById('typed-text');
+  const output = document.getElementById('output');
+  const biolinkContent = document.getElementById('biolink-content');
+
+  // Audemars u can enter wtv u want here or dm me if u want me to change it g 
+  const typingCommand = `sudo apt install biolink`;
+  const terminalText = `
+  Reading codex lists... Done\n
+  Morphing into a catgirl... Done\n
+  Extracting Grineer blood... Done\n
+  The following NEW packages will be installed:\n
+  biolink\n
+  0 upgraded, 1 newly installed.\n
+  Need to get 1.2 MB of archives.\n
+  After this operation, 3.3 MB of additional disk space will be used.\n
+  Installing biolink... Done`;
+
+  let typingIndex = 0;
+  let index = 0;
+
+  function typeCommandEffect() {
+    if (typingIndex < typingCommand.length) {
+      typedText.textContent += typingCommand[typingIndex];
+      typingIndex++;
+      setTimeout(typeCommandEffect, 50); // Typing speed for command
+    } else {
+      typedText.style.borderRight = "none";
+      typeOutputEffect();
+    }
+  }
+
+  function typeOutputEffect() {
+    if (index < terminalText.length) {
+      if (terminalText[index] === "\n") {
+        const newLine = document.createElement("div");
+        newLine.textContent = "";
+        output.appendChild(newLine);
+      } else {
+        const lines = output.querySelectorAll("div");
+        const currentLine = lines[lines.length - 1] || output;
+        currentLine.textContent += terminalText[index];
+      }
+      index++;
+      setTimeout(typeOutputEffect, 10); // Typing speed for output
+    } else {
+
+      setTimeout(() => {
+        showClickToEnterButton();
+      }, 1000); // Delay before showing the button
+    }
+  }
+
+  function showClickToEnterButton() {
+    const button = document.createElement("button");
+    button.textContent = "> Click to Enter";
+    button.style.cssText = `
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 16px;
+      color: #fff;
+      background-color: transparent;
+      border: 2px solid #fff;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    `;
+    button.addEventListener("mouseover", () => {
+      button.style.backgroundColor = "#fff";
+      button.style.color = "#000";
+    });
+    button.addEventListener("mouseout", () => {
+      button.style.backgroundColor = "transparent";
+      button.style.color = "#fff";
+    });
+    button.addEventListener("click", () => {
+      terminal.classList.add("hidden");
+      biolinkContent.classList.remove("hidden");
+      biolinkContent.classList.add("visible");
+
+
+      playAudio();
+    });
+
+    output.appendChild(button);
+  }
+
+  function playAudio() {
+    const audio = new Audio('Please Ｈｅｌｐ！.mp3'); // replace this w ur song file path
+    audio.volume = 0.5; // volume percent at 50% rn
+    audio.loop = true;
+    audio.play();
+  }
+
+  typeCommandEffect();
+
+  function updateClock() {
+    const clockElement = document.getElementById("clock");
+    const timeElement = clockElement.querySelector(".time");
+    const dateElement = clockElement.querySelector(".date");
+
+    const now = new Date();
+
+    // Format time as H:MM AM/PM
+    let hours = now.getHours();
+    const minutes = String(now.getMinutes()).padStart(2, "0");
+    const amPm = hours >= 12 ? "PM" : "AM";
+    hours = hours % 12 || 12;
+
+    const time = `${hours}:${minutes} ${amPm}`;
+    timeElement.textContent = time;
+
+    // Format date as YYYY-MM-DD dont change this or it gonna fuck up same goes for the code above
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const day = String(now.getDate()).padStart(2, "0");
+
+    const date = `${year}-${month}-${day}`;
+    dateElement.textContent = date;
+  }
+
+  setInterval(updateClock, 1000);
+  updateClock();
+    
+    const apiKey = 'fbcb5c59a05504d4040cada17a0ee112'; // dont touch if it dont work lmk cuz u gotta create an api acc on last.fm
+  const user = 'tqpz'; // replace with ur last.fm user
+
+  const addButton = document.getElementById('addButton');
+  const closeButton = document.getElementById('closeButton');
+  const draggableContainer = document.getElementById('draggableContainer');
+
+  
+  let isOpen = false;
+
+  addButton.addEventListener('click', () => {
+    toggleGUI();
+  });
+
+  closeButton.addEventListener('click', () => {
+    toggleGUI();
+  });
+
+  function toggleGUI() {
+    isOpen = !isOpen;
+
+    if (isOpen) {
+      
+      draggableContainer.style.display = 'block';
+      setTimeout(() => {
+        draggableContainer.style.transform = 'translate(-50%, -50%) scale(1)';
+      }, 10); 
+      addButton.textContent = '-';
+      fetchLastFmData();
+    } else {
+      
+      draggableContainer.style.transform = 'translate(-50%, -50%) scale(0)';
+      setTimeout(() => {
+        draggableContainer.style.display = 'none';
+      }, 500); 
+      addButton.textContent = '+';
+    }
+  }
+
+  
+  async function fetchLastFmData() {
+    try {
+      const [tracksResponse, artistsResponse] = await Promise.all([
+        fetch(`https://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=${user}&period=1month&limit=10&api_key=${apiKey}&format=json`),
+        fetch(`https://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=${user}&period=1month&limit=10&api_key=${apiKey}&format=json`)
+      ]);
+      const tracksData = await tracksResponse.json();
+      const artistsData = await artistsResponse.json();
+
+      const tracks = tracksData.toptracks.track;
+      const artists = artistsData.topartists.artist;
+
+      const contentDiv = document.getElementById('content');
+      contentDiv.innerHTML = `
+        <div class="columns">
+          <div class="column">
+            <h4>Top Tracks</h4>
+            <ul>
+              ${tracks.map(track => `<li>${track.name} by ${track.artist.name}</li>`).join('')}
+            </ul>
+          </div>
+          <div class="column">
+            <h4>Top Artists</h4>
+            <ul>
+              ${artists.map(artist => `<li>${artist.name}</li>`).join('')}
+            </ul>
+          </div>
+        </div>
+      `;
+    } catch (error) {
+      console.error('Error fetching data from Last.fm:', error);
+      document.getElementById('content').textContent = 'Failed to load data. Please try again later.';
+    }
+  }
+
+  
+  function makeDraggable(element, handle) {
+    let isDragging = false;
+    let offsetX, offsetY;
+
+    handle.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      offsetX = e.clientX - element.offsetLeft;
+      offsetY = e.clientY - element.offsetTop;
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (isDragging) {
+        element.style.left = `${e.clientX - offsetX}px`;
+        element.style.top = `${e.clientY - offsetY}px`;
+      }
+    });
+
+    document.addEventListener('mouseup', () => {
+      isDragging = false;
+    });
+  }
+
+  
+  const draggableHeader = document.getElementById('draggableHeader');
+  makeDraggable(draggableContainer, draggableHeader);
+</script>
+</body>
+</html>
