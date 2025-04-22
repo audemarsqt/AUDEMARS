@@ -348,7 +348,7 @@
 <body>
   <!-- Video -->
   <video id="background-video" autoplay muted loop class="hidden">
-    <source src="https://cdn.discordapp.com/attachments/1287937673440530462/1364292174656831498/XFgugFW4WJaK81i8.mov?ex=68092399&is=6807d219&hm=09d5c3c6a20d40700445b98e74e01cfdb012abaf778c283d52d182ff96606f71&" type="video/mp4">
+    <source src="https://cdn.discordapp.com/attachments/1287937673440530462/1364064861901815838/XFgugFW4WJaK81i8.mp4?ex=68084fe6&is=6806fe66&hm=a10500833860ac8d480334903ecfc31cc4cdcaff5d8b820e49b8ce10b129f475&" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 
@@ -427,102 +427,103 @@
 
   <script>
   const terminal = document.getElementById('terminal');
-  const typedText = document.getElementById('typed-text');
-  const output = document.getElementById('output');
-  const biolinkContent = document.getElementById('biolink-content');
+const typedText = document.getElementById('typed-text');
+const output = document.getElementById('output');
+const biolinkContent = document.getElementById('biolink-content');
+const backgroundVideo = document.getElementById('background-video'); // Added this line
 
-  // Audemars u can enter wtv u want here or dm me if u want me to change it g 
-  const typingCommand = `sudo apt install biolink`;
-  const terminalText = `
-  Reading codex lists... Done\n
-  Morphing into a catgirl... Done\n
-  Meet your brand new image... Done\n
-  The following NEW packages will be installed:\n
-  biolink\n
-  0 upgraded, 1 newly installed.\n
-  Need to get 1.2 MB of archives.\n
-  After this operation, 3.3 MB of additional disk space will be used.\n
-  Installing biolink... Done`;
+// Audemars you can enter whatever you want here or DM me if you want me to change it
+const typingCommand = `sudo apt install biolink`;
+const terminalText = `
+Reading codex lists... Done\n
+Morphing into a catgirl... Done\n
+Meet your brand new image... Done\n
+The following NEW packages will be installed:\n
+biolink\n
+0 upgraded, 1 newly installed.\n
+Need to get 1.2 MB of archives.\n
+After this operation, 3.3 MB of additional disk space will be used.\n
+Installing biolink... Done`;
 
-  let typingIndex = 0;
-  let index = 0;
+let typingIndex = 0;
+let index = 0;
 
-  function typeCommandEffect() {
-    if (typingIndex < typingCommand.length) {
-      typedText.textContent += typingCommand[typingIndex];
-      typingIndex++;
-      setTimeout(typeCommandEffect, 50); // Typing speed for command
+function typeCommandEffect() {
+  if (typingIndex < typingCommand.length) {
+    typedText.textContent += typingCommand[typingIndex];
+    typingIndex++;
+    setTimeout(typeCommandEffect, 50); // Typing speed for command
+  } else {
+    typedText.style.borderRight = "none";
+    typeOutputEffect();
+  }
+}
+
+function typeOutputEffect() {
+  if (index < terminalText.length) {
+    if (terminalText[index] === "\n") {
+      const newLine = document.createElement("div");
+      newLine.textContent = "";
+      output.appendChild(newLine);
     } else {
-      typedText.style.borderRight = "none";
-      typeOutputEffect();
+      const lines = output.querySelectorAll("div");
+      const currentLine = lines[lines.length - 1] || output;
+      currentLine.textContent += terminalText[index];
     }
+    index++;
+    setTimeout(typeOutputEffect, 10); // Typing speed for output
+  } else {
+    setTimeout(() => {
+      showClickToEnterButton();
+    }, 1000); // Delay before showing the button
   }
+}
 
-  function typeOutputEffect() {
-    if (index < terminalText.length) {
-      if (terminalText[index] === "\n") {
-        const newLine = document.createElement("div");
-        newLine.textContent = "";
-        output.appendChild(newLine);
-      } else {
-        const lines = output.querySelectorAll("div");
-        const currentLine = lines[lines.length - 1] || output;
-        currentLine.textContent += terminalText[index];
-      }
-      index++;
-      setTimeout(typeOutputEffect, 10); // Typing speed for output
-    } else {
+function showClickToEnterButton() {
+  const button = document.createElement("button");
+  button.textContent = "> Click to Enter";
+  button.style.cssText = `
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+    color: #fff;
+    background-color: transparent;
+    border: 2px solid #fff;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  `;
+  button.addEventListener("mouseover", () => {
+    button.style.backgroundColor = "#fff";
+    button.style.color = "#000";
+  });
+  button.addEventListener("mouseout", () => {
+    button.style.backgroundColor = "transparent";
+    button.style.color = "#fff";
+  });
+  button.addEventListener("click", () => {
+    terminal.classList.add("hidden");
+    biolinkContent.classList.remove("hidden");
+    biolinkContent.classList.add("visible");
 
-      setTimeout(() => {
-        showClickToEnterButton();
-      }, 1000); // Delay before showing the button
-    }
-  }
+    
+    backgroundVideo.classList.remove("hidden");
+    backgroundVideo.play();
+    playAudio();
+  });
 
-  function showClickToEnterButton() {
-    const button = document.createElement("button");
-    button.textContent = "> Click to Enter";
-    button.style.cssText = `
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 16px;
-      color: #fff;
-      background-color: transparent;
-      border: 2px solid #fff;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    `;
-    button.addEventListener("mouseover", () => {
-        button.style.backgroundColor = "#fff";
-        button.style.color = "#000";
-      });
-      button.addEventListener("mouseout", () => {
-        button.style.backgroundColor = "transparent";
-        button.style.color = "#fff";
-      });
-      button.addEventListener("click", () => {
-        terminal.classList.add("hidden");
-        biolinkContent.classList.remove("hidden");
-        biolinkContent.classList.add("visible");
-        backgroundVideo.classList.remove("hidden"); 
-        backgroundVideo.play(); 
-      
-        playAudio();
-    });
+  output.appendChild(button);
+}
 
-    output.appendChild(button);
-  }
+function playAudio() {
+  const audio = new Audio('Please Ｈｅｌｐ！.mp3'); // Replace this with your song file path
+  audio.volume = 0.5; // Volume percent at 50%
+  audio.loop = true;
+  audio.play();
+}
 
-  function playAudio() {
-    const audio = new Audio('Please Ｈｅｌｐ！.mp3'); // replace this w ur song file path
-    audio.volume = 0.5; // volume percent at 50% rn
-    audio.loop = true;
-    audio.play();
-  }
-
-  typeCommandEffect();
+typeCommandEffect();
 
   function updateClock() {
     const clockElement = document.getElementById("clock");
